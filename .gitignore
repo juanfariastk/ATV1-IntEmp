@@ -1,0 +1,58 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+env/
+venv/
+ENV/
+.venv/
+*.env
+*.venv
+.Python
+build/
+dist/
+
+# Jupyter Notebooks checkpoints (se aplicável)
+.ipynb_checkpoints
+
+# Matplotlib cache
+.matplotlib/
+
+# CSV and other data files
+*.csv
+*.tsv
+*.dat
+*.data
+*.json
+
+# Log files
+*.log
+
+# Temporary files and folders
+*.temp
+*.tmp
+*.swp
+*.swo
+*.bak
+*.old
+
+# VSCode settings folder
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Pipenv
+Pipfile.lock
+
+# pyenv
+.python-version
+
+# Jupyter Notebook config (se aplicável)
+.jupyter/
+
+# PyCharm project files
+.idea/
