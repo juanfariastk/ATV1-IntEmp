@@ -20,8 +20,6 @@ dist/
 # Matplotlib cache
 .matplotlib/
 
-# CSV and other data files
-*.csv
 *.tsv
 *.dat
 *.data
