@@ -37,13 +37,11 @@ class Analysis:
         return df_country.groupby('CategoriaNome')['Vendas'].sum().nlargest(3)
 
     def freight_per_carrier(self) -> pd.DataFrame:
-        # Merge com transportadoras para obter o nome ao invés do ID
         df_with_names = self.vendas_globais.merge(
             self.transportadoras[['TransportadoraID', 'TransportadoraNome']],
             on='TransportadoraID',
             how='left'
         )
-        # Agrupar pelo nome da transportadora e somar o frete
         return df_with_names.groupby('TransportadoraNome')['Frete'].sum()
 
     def top_mens_footwear_customers(self, country: str) -> pd.DataFrame:
@@ -84,10 +82,8 @@ class Analysis:
             self.fornecedores[['FornecedorID', 'FornecedorNome']], on='FornecedorID', how='left'
         )
 
-        # Select only the relevant columns
         profit_per_supplier = profit_per_supplier[['FornecedorNome', 'Margem Bruta']]
         
-        # Set 'FornecedorNome' as the index before returning the DataFrame
         return profit_per_supplier.set_index('FornecedorNome')
 
 
