@@ -78,7 +78,20 @@ class Analysis:
 
     def top_profit_suppliers_womens_wear(self) -> pd.DataFrame:
         df_segment = self.vendas_globais[self.vendas_globais['CategoriaNome'] == "Womens wear"]
-        return df_segment.groupby('FornecedorID')['Margem Bruta'].sum().nlargest(5)
+        profit_per_supplier = df_segment.groupby('FornecedorID')['Margem Bruta'].sum().nlargest(5).reset_index()
+
+        profit_per_supplier = profit_per_supplier.merge(
+            self.fornecedores[['FornecedorID', 'FornecedorNome']], on='FornecedorID', how='left'
+        )
+
+        # Select only the relevant columns
+        profit_per_supplier = profit_per_supplier[['FornecedorNome', 'Margem Bruta']]
+        
+        # Set 'FornecedorNome' as the index before returning the DataFrame
+        return profit_per_supplier.set_index('FornecedorNome')
+
+
+
 
     def sales_over_years(self, start_year: int, end_year: int) -> pd.DataFrame:
         self.vendas_globais['Data'] = pd.to_datetime(self.vendas_globais['Data'], format='%d/%m/%Y')
