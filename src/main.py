@@ -1,19 +1,22 @@
+import os
 from data_loader import DataLoader
 from data_cleaner import DataCleaner
 from analysis import Analysis
 from reporting import Reporting
 
 def main():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    
     vendas_df = DataLoader.load_csv('data/vendas_globais.csv')
     vendas_df = DataCleaner.clean_data(vendas_df)
 
     analysis = Analysis(
-        'data/vendas_globais.csv', 
-        'data/transportadoras.csv',
-        'data/fornecedores.csv',
-        'data/vendedores.csv'
+        os.path.join(base_dir, '../data/vendas_globais.csv'),
+        os.path.join(base_dir, '../data/transportadoras.csv'),
+        os.path.join(base_dir, '../data/fornecedores.csv'),
+        os.path.join(base_dir, '../data/vendedores.csv')
     )
-    
+
     # 1. Quem são os meus 10 maiores clientes, em termos de vendas ($)?
     top_customers = analysis.top_customers()
     Reporting.generate_report(top_customers, "Top 10 Clientes (em $)")

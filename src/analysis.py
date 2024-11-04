@@ -46,7 +46,7 @@ class Analysis:
 
     def top_mens_footwear_customers(self, country: str) -> pd.DataFrame:
         df_segment = self.vendas_globais[
-            (self.vendas_globais['CategoriaNome'].str.contains("Men")) & 
+            (self.vendas_globais['CategoriaID'] == 6) & 
             (self.vendas_globais['ClientePaís'] == country)
         ]
         
